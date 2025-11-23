@@ -64,7 +64,6 @@ export async function getFarcasterManifest() {
         `${appUrl}/opengraph-image.png`,
       ],
       heroImageUrl: `${appUrl}/opengraph-image.png`, // 1200 x 630px (1.91:1), promotional display image on top of the mini app store
-      noindex,
     },
   };
 }
