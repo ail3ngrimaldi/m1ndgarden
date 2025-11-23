@@ -26,23 +26,16 @@ export function PrePracticeScreen({ onStartPractice, onMaybeLater, onBack }: Pre
 
         {/* Duration badge */}
         <div className="flex justify-center mb-6">
-          <div className="bg-[#d946ef] text-white px-4 py-2 rounded-lg text-sm font-semibold">5 minutes • Guided</div>
+          <div className="bg-[#d946ef] text-white px-4 py-2 rounded-lg text-sm font-semibold">1 minute • Guided</div>
         </div>
 
         {/* Plant illustration */}
         <div className="flex justify-center mb-8">
-          <svg className="w-64 h-64" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Simple cactus/plant shape */}
-            <ellipse cx="100" cy="160" rx="40" ry="25" fill="#06b6d4" />
-            <path d="M60 160 Q60 80 100 60 Q140 80 140 160" fill="#06b6d4" stroke="white" strokeWidth="8" />
-            <ellipse cx="70" cy="110" rx="20" ry="35" fill="#06b6d4" />
-            <ellipse cx="130" cy="110" rx="20" ry="35" fill="#06b6d4" />
-            <path d="M85 90 Q90 50 100 40 Q110 50 115 90" fill="#06b6d4" />
-            {/* White highlights */}
-            <ellipse cx="75" cy="90" rx="8" ry="15" fill="white" opacity="0.6" />
-            <ellipse cx="125" cy="90" rx="8" ry="15" fill="white" opacity="0.6" />
-            <ellipse cx="95" cy="60" rx="6" ry="12" fill="white" opacity="0.6" />
-          </svg>
+          <img
+            src="/plant-shape.svg"
+            alt="Plant illustration"
+            className="w-64 h-64"
+          />
         </div>
 
         {/* Benefits section */}

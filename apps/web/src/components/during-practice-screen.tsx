@@ -17,7 +17,7 @@ export function DuringPracticeScreen({
   onEndEarly,
   onComplete,
   onBack,
-  duration = 300, // 5 minutes default
+  duration = 60, // 1 minute default
 }: DuringPracticeScreenProps) {
   const [timeRemaining, setTimeRemaining] = useState(duration)
   const [breathePhase, setBreathePhase] = useState<"in" | "out">("in")
@@ -56,6 +56,20 @@ export function DuringPracticeScreen({
     return () => clearInterval(breatheInterval)
   }, [isPaused])
 
+  // Initialize audio on component mount
+  useEffect(() => {
+    const audioElement = audioRef.current
+    if (audioElement) {
+      // Set volume to 30% (soft background music)
+      audioElement.volume = 0.3
+
+      // Try to play audio (may be blocked by browser autoplay policy)
+      audioElement.play().catch((error) => {
+        console.log("Audio autoplay blocked by browser. Audio will start on user interaction.", error)
+      })
+    }
+  }, [])
+
   // Cleanup audio when component unmounts
   useEffect(() => {
     return () => {
@@ -77,13 +91,22 @@ export function DuringPracticeScreen({
       if (!isPaused) {
         audioRef.current.pause()
       } else {
-        audioRef.current.play().catch(() => {
-          // Handle autoplay policy restrictions
-          console.log("Audio autoplay blocked by browser")
+        // Try to resume audio (handles autoplay policy)
+        audioRef.current.play().catch((error) => {
+          console.log("Audio play blocked by browser autoplay policy:", error)
         })
       }
     }
     onPause()
+  }
+
+  // Handle user interaction to start audio if autoplay was blocked
+  const handleUserInteraction = () => {
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.play().catch((error) => {
+        console.log("Audio play blocked:", error)
+      })
+    }
   }
 
   return (
@@ -95,10 +118,11 @@ export function DuringPracticeScreen({
         loop
         preload="auto"
         className="hidden"
+        onError={(e) => console.log("Audio loading error:", e)}
+        onLoadStart={() => console.log("Audio loading started")}
+        onCanPlay={() => console.log("Audio can play")}
       >
-        <source src="/meditation-music.mp3" type="audio/mpeg" />
-        <source src="/meditation-music.wav" type="audio/wav" />
-        {/* Fallback: browser will handle if audio files are missing */}
+        <source src="/meditation.mp3" type="audio/mpeg" />
       </audio>
 
       {/* Main content container */}
@@ -110,27 +134,15 @@ export function DuringPracticeScreen({
         </div>
 
         {/* Breathing animation - centered */}
-        <div className="flex-1 flex flex-col items-center justify-center -mt-16">
+        <div className="flex-1 flex flex-col items-center justify-center -mt-16" onClick={handleUserInteraction}>
 
           {/* Plant illustration */}
           <div className="relative mb-12">
-            <svg
+            <img
+              src="/plant-shape.svg"
+              alt="Plant illustration"
               className={`w-72 h-72 ${!isPaused ? 'animate-breathe' : ''}`}
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Simple cactus/plant shape */}
-              <ellipse cx="100" cy="160" rx="40" ry="25" fill="#06b6d4" />
-              <path d="M60 160 Q60 80 100 60 Q140 80 140 160" fill="#06b6d4" stroke="white" strokeWidth="8" />
-              <ellipse cx="70" cy="110" rx="20" ry="35" fill="#06b6d4" />
-              <ellipse cx="130" cy="110" rx="20" ry="35" fill="#06b6d4" />
-              <path d="M85 90 Q90 50 100 40 Q110 50 115 90" fill="#06b6d4" />
-              {/* White highlights */}
-              <ellipse cx="75" cy="90" rx="8" ry="15" fill="white" opacity="0.6" />
-              <ellipse cx="125" cy="90" rx="8" ry="15" fill="white" opacity="0.6" />
-              <ellipse cx="95" cy="60" rx="6" ry="12" fill="white" opacity="0.6" />
-            </svg>
+            />
 
             {/* Breathing ring animation */}
             <div

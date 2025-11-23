@@ -32,7 +32,7 @@ export default function PracticePage() {
       onEndEarly={handleEndEarly}
       onComplete={handleComplete}
       onBack={handleBack}
-      duration={300} // 5 minutes
+      duration={60} // 1 minute
     />
   )
 }

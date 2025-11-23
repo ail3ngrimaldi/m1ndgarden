@@ -17,7 +17,7 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
   const router = useRouter()
   const plantImage = "/garden1.jpg"
 
-  const isMeditationCompleted = completedPractices.includes("5-minute morning meditation")
+  const isMeditationCompleted = completedPractices.includes("1-minute morning meditation")
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -87,7 +87,7 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
               disabled={isMeditationCompleted}
             >
               <span className={`font-medium text-[#1a1a1a] ${isMeditationCompleted ? "line-through opacity-60" : ""}`}>
-                5-minute morning meditation
+                1-minute morning meditation
               </span>
               <ArrowRight className="w-5 h-5 text-[#1a1a1a]" />
             </Button>
