@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* --- COLOR VARIABLES --- */
     --border: 214.3 31.8% 91.4%;
     --input: 216 33% 97%;
     --ring: 215 20.2% 65.1%;
@@ -68,13 +69,39 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
+  /* 1. Fuente Base/UI: Inter */
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  /* 2. Fuente de Encabezados: Space Grotesk */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-space-grotesk), sans-serif;
+  }
+
+  /* 3. Fuente Mono/Código: Fira Mono */
+  pre, code {
+    font-family: var(--font-fira-mono), monospace;
+  }
+
+  /* Clase para texto "Display" (Brassia) */
+  .font-display {
+      font-family: var(--font-brassia), sans-serif;
+  }
+
+  /* Clase para texto "Special" (MD Thermochrome) con su fallback específico */
+  .font-special {
+      font-family: var(--font-thermochrome), Georgia, serif;
+  }
+
+  html, body {
+    background: linear-gradient(180deg, #D9F99D 7.21%, #F0ABFC 44.23%, #FFF 88.94%);
+    background-attachment: fixed;
   }
 }
