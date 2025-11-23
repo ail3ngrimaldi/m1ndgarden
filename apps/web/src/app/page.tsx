@@ -3,6 +3,7 @@ import { useMiniApp } from "@/contexts/miniapp-context";
 import { sdk } from "@farcaster/frame-sdk";
 import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
+import Chatbot from '@/components/chatbot';
 
 export default function Home() {
   const { context, isMiniAppReady } = useMiniApp();
@@ -81,6 +82,7 @@ export default function Home() {
               <p className="text-sm text-gray-700 font-mono">
                 {formatAddress(walletAddress)}
               </p>
+              <Chatbot />
             </div>
           </div>
           
