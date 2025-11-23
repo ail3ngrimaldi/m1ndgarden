@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { ArrowLeft, ArrowRight, Brain, Moon, User, Heart } from "lucide-react"
 import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 interface HomeScreenProps {
   onPracticeClick?: () => void
@@ -26,9 +27,9 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
 
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <button onClick={onBack} className="p-2 -ml-2">
+          <Button onClick={onBack} className="p-2 -ml-2">
             <ArrowLeft className="w-6 h-6" />
-          </button>
+          </Button>
           <h1 className="text-2xl font-bold tracking-wider font-display">
             MINDGARDEN
           </h1>
@@ -63,7 +64,7 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
         <div className="bg-white rounded-2xl p-4 mb-4 shadow-md">
           <div className="flex items-center justify-between mb-2">
             <span className="font-semibold text-[#1a1a1a]">Garden Level</span>
-            <span className="text-[#9ea2ad]">{xp}/100XP</span>
+            <span className="text-[#9ea2ad]">{xp}100XP</span>
           </div>
           {xp > 0 && (
             <div className="w-full bg-[#e5e7eb] rounded-full h-2">
@@ -75,12 +76,13 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
         {/* Garden suggests section */}
         <div className="bg-[#ecfccb] rounded-3xl p-6 mb-4 shadow-lg">
           <h3 className="text-2xl font-bold mb-4 text-[#1a1a1a]">Your garden suggests</h3>
-          <p className="text-[#1a1a1a] mb-6 leading-relaxed">
-            Based on how you're feeling today, your garden has some personalized suggestions to help you flourish:
+          <p className="text-[rgb(26,26,26)] mb-6 leading-relaxed">
+            Based on how youre feeling today, your garden has some personalized suggestions to help you flourish:
           </p>
           <div className="space-y-3">
-            <button
+            <Button
               onClick={() => router.push("/meditate")}
+              variant="ghost"
               className="w-full bg-white rounded-2xl p-4 flex items-center justify-between hover:bg-[#f0fdf4] transition-colors"
               disabled={isMeditationCompleted}
             >
@@ -88,11 +90,14 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
                 5-minute morning meditation
               </span>
               <ArrowRight className="w-5 h-5 text-[#1a1a1a]" />
-            </button>
-            <button className="w-full bg-white rounded-2xl p-4 flex items-center justify-between hover:bg-[#f0fdf4] transition-colors">
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full bg-white rounded-2xl p-4 flex items-center justify-between hover:bg-[#f0fdf4] transition-colors"
+            >
               <span className="font-medium text-[#1a1a1a]">Tackle a creative project</span>
               <ArrowRight className="w-5 h-5 text-[#1a1a1a]" />
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -100,33 +105,33 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
         <div className="bg-white rounded-3xl p-6 mb-4 shadow-lg">
           <h3 className="text-2xl font-bold mb-4 text-[#1a1a1a]">My garden</h3>
           <div className="grid grid-cols-2 gap-3">
-            <button className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
+            <Button variant="ghost" className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
               <Brain className="w-8 h-8 text-[#06b6d4]" strokeWidth={1.5} />
               <span className="font-semibold text-[#1a1a1a] flex items-center gap-1">
                 Mind <ArrowRight className="w-4 h-4" />
               </span>
-            </button>
+            </Button>
 
-            <button className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
+            <Button variant="ghost" className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
               <User className="w-8 h-8 text-[#06b6d4]" strokeWidth={1.5} />
               <span className="font-semibold text-[#1a1a1a] flex items-center gap-1">
                 Body <ArrowRight className="w-4 h-4" />
               </span>
-            </button>
+            </Button>
 
-            <button className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
+            <Button variant="ghost" className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
               <Moon className="w-8 h-8 text-[#06b6d4]" strokeWidth={1.5} />
               <span className="font-semibold text-[#1a1a1a] flex items-center gap-1">
                 Rest <ArrowRight className="w-4 h-4" />
               </span>
-            </button>
+            </Button>
 
-            <button className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
+            <Button variant="ghost" className="border-2 border-[#06b6d4] rounded-2xl p-6 flex flex-col items-start gap-4 hover:bg-[#ecfccb] transition-colors">
               <Heart className="w-8 h-8 text-[#06b6d4]" strokeWidth={1.5} />
               <span className="font-semibold text-[#1a1a1a] flex items-center gap-1">
                 Connect <ArrowRight className="w-4 h-4" />
               </span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -135,7 +140,7 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#e1e1e2] z-20">
         <div className="max-w-md mx-auto px-6 py-3">
           <div className="flex items-center justify-around">
-            <button className="flex flex-col items-center gap-1 group">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 group p-0">
               <svg
                 className="w-6 h-6 text-[#06b6d4]"
                 viewBox="0 0 24 24"
@@ -147,9 +152,9 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
               </svg>
               <span className="text-xs font-medium text-[#06b6d4]">Home</span>
               <div className="w-12 h-0.5 bg-[#06b6d4] rounded-full" />
-            </button>
+            </Button>
 
-            <button className="flex flex-col items-center gap-1">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 p-0">
               <svg
                 className="w-6 h-6 text-[#9ea2ad]"
                 viewBox="0 0 24 24"
@@ -160,9 +165,9 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
                 <path d="M20 12v8H4v-8M12 16v-8m0 0L8 12m4-4l4 4M2 5h20" />
               </svg>
               <span className="text-xs text-[#9ea2ad]">Rewards</span>
-            </button>
+            </Button>
 
-            <button className="flex flex-col items-center gap-1">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 p-0">
               <svg
                 className="w-6 h-6 text-[#9ea2ad]"
                 viewBox="0 0 24 24"
@@ -173,7 +178,7 @@ export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, complet
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5zM20 17V5a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 5.5v9" />
               </svg>
               <span className="text-xs text-[#9ea2ad]">Journal</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

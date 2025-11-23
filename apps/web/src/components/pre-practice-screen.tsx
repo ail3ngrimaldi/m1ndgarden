@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface PrePracticeScreenProps {
   onStartPractice: () => void
@@ -64,27 +65,28 @@ export function PrePracticeScreen({ onStartPractice, onMaybeLater, onBack }: Pre
         </div>
 
         {/* Start button */}
-        <button
+        <Button
           onClick={onStartPractice}
           className="w-full bg-[#06b6d4] text-white rounded-2xl py-4 font-semibold text-lg flex items-center justify-center gap-2 hover:bg-[#0891b2] transition-colors mb-3"
         >
           Start Practice <ArrowRight className="w-5 h-5" />
-        </button>
+        </Button>
 
         {/* Maybe Later link */}
-        <button
+        <Button
           onClick={onMaybeLater}
+          variant="ghost"
           className="w-full text-[#1a1a1a] py-3 font-medium hover:text-[#525252] transition-colors"
         >
           Maybe Later
-        </button>
+        </Button>
       </div>
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#e1e1e2] z-20">
         <div className="max-w-md mx-auto px-6 py-3">
           <div className="flex items-center justify-around">
-            <button className="flex flex-col items-center gap-1">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 p-0">
               <svg
                 className="w-6 h-6 text-[#9ea2ad]"
                 viewBox="0 0 24 24"
@@ -95,9 +97,9 @@ export function PrePracticeScreen({ onStartPractice, onMaybeLater, onBack }: Pre
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               </svg>
               <span className="text-xs text-[#9ea2ad]">Garden</span>
-            </button>
+            </Button>
 
-            <button className="flex flex-col items-center gap-1 group">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 group p-0">
               <svg
                 className="w-6 h-6 text-[#06b6d4]"
                 viewBox="0 0 24 24"
@@ -109,9 +111,9 @@ export function PrePracticeScreen({ onStartPractice, onMaybeLater, onBack }: Pre
               </svg>
               <span className="text-xs font-medium text-[#06b6d4]">Rewards</span>
               <div className="w-12 h-0.5 bg-[#06b6d4] rounded-full" />
-            </button>
+            </Button>
 
-            <button className="flex flex-col items-center gap-1">
+            <Button variant="ghost" className="flex flex-col items-center gap-1 p-0">
               <svg
                 className="w-6 h-6 text-[#9ea2ad]"
                 viewBox="0 0 24 24"
@@ -122,7 +124,7 @@ export function PrePracticeScreen({ onStartPractice, onMaybeLater, onBack }: Pre
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5zM20 17V5a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 5.5v9" />
               </svg>
               <span className="text-xs text-[#9ea2ad]">Journal</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

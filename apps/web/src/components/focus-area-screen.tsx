@@ -47,22 +47,25 @@ export function FocusAreaScreen({ onContinue, onCancel }: FocusAreaScreenProps) 
       {/* Modal content */}
       <div className="max-w-md mx-auto px-6 pt-32 pb-12 flex items-center justify-center min-h-screen">
         <div className="bg-white rounded-3xl p-8 shadow-2xl w-full relative">
-          <button
+          <Button
             onClick={onCancel}
-            className="absolute top-6 right-6 text-[#525252] hover:text-[#000000] transition-colors"
+            variant="ghost"
+            size="icon"
+            className="absolute top-6 right-6 text-[#525252] hover:text-[#000000] transition-colors h-8 w-8"
           >
             <X className="w-6 h-6" />
-          </button>
+          </Button>
 
           <h2 className="text-2xl font-bold text-center mb-8 text-[#000000] pr-8">Which area needs most attention?</h2>
 
           {/* Focus areas list */}
           <div className="space-y-3 mb-8">
             {focusAreas.map((area) => (
-              <button
+              <Button
                 key={area.id}
                 onClick={() => setSelectedArea(area.id)}
-                className={`w-full flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left ${
+                variant="ghost"
+                className={`w-full flex items-center gap-3 p-4 rounded-2xl border-2 transition-all text-left justify-start ${
                   selectedArea === area.id
                     ? "border-[#06b6d4] bg-[#ecfeff]"
                     : "border-[#e9eaeb] bg-white hover:border-[#06b6d4]/50"
@@ -77,7 +80,7 @@ export function FocusAreaScreen({ onContinue, onCancel }: FocusAreaScreenProps) 
                   <span className="text-base font-semibold text-[#000000]">{area.label}</span>
                   <span className="text-sm text-[#525252] ml-1">{area.subtitle}</span>
                 </div>
-              </button>
+              </Button>
             ))}
           </div>
 

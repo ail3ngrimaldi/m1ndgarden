@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   const { context, isMiniAppReady } = useMiniApp();
@@ -61,10 +62,11 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-2">
           {/* Garden Image */}
           <div className="w-64 h-64 rounded-lg overflow-hidden">
-            <img
+            <Image
               src="/garden.jpeg"
               alt="Garden illustration"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
 
@@ -76,10 +78,11 @@ export default function Home() {
             {/* Profile Avatar */}
             <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center overflow-hidden">
               {pfpUrl ? (
-                <img 
-                  src={pfpUrl} 
-                  alt="Profile" 
-                  className="w-full h-full object-cover rounded-full"
+                <Image
+                  src={pfpUrl}
+                  alt="Profile"
+                  fill
+                  className="object-cover rounded-full"
                 />
               ) : (
                 <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
@@ -101,7 +104,7 @@ export default function Home() {
           <h2 className="text-xl text-muted-foreground text-center">Your mind is a garden</h2>
 
           {/* Paragraph */}
-          <p className="text-center text-muted-foreground">Let's cultivate it together</p>
+          <p className="text-center text-muted-foreground">Lets cultivate it together</p>
 
             {/* Button */}
             <Link href="/mood">

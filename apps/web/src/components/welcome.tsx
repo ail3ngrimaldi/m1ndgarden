@@ -18,7 +18,7 @@ export default function Home() {
           <h2 className="text-xl text-muted-foreground text-center">Your mind is a garden</h2>
 
           {/* Paragraph */}
-          <p className="text-center text-muted-foreground">Let's cultivate it together</p>
+          <p className="text-center text-muted-foreground">Lets cultivate it together</p>
 
           {/* Button */}
           <Button className="rounded-full px-8">Start your journey</Button>

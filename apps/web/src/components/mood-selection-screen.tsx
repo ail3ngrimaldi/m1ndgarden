@@ -33,15 +33,17 @@ export function MoodSelectionScreen({ onContinue, onCancel }: MoodSelectionScree
       {/* Modal content */}
       <div className="max-w-md mx-auto px-6 pt-32 pb-12 flex items-center justify-center min-h-screen">
         <div className="bg-white rounded-3xl p-8 shadow-2xl w-full relative">
-          <button
+          <Button
             onClick={onCancel}
-            className="absolute top-6 right-6 text-[#525252] hover:text-[#000000] transition-colors"
+            variant="ghost"
+            size="icon"
+            className="absolute top-6 right-6 text-[#525252] hover:text-[#000000] transition-colors h-8 w-8"
           >
             <X className="w-6 h-6" />
-          </button>
+          </Button>
 
           <h2 className="text-2xl font-bold text-center mb-6 text-[#000000] pr-8">
-            How's your mental wellness right now?
+            Hows your mental wellness right now?
           </h2>
 
           {/* Current mood display */}
@@ -58,9 +60,10 @@ export function MoodSelectionScreen({ onContinue, onCancel }: MoodSelectionScree
           {/* Mood grid */}
           <div className="grid grid-cols-4 gap-3 mb-6">
             {moods.map((mood) => (
-              <button
+              <Button
                 key={mood.label}
                 onClick={() => setSelectedMood(mood.label)}
+                variant="ghost"
                 className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${
                   selectedMood === mood.label
                     ? "border-[#06b6d4] bg-[#ecfeff]"
@@ -69,7 +72,7 @@ export function MoodSelectionScreen({ onContinue, onCancel }: MoodSelectionScree
               >
                 <span className="text-3xl mb-1">{mood.emoji}</span>
                 <span className="text-xs text-[#525252] text-center leading-tight">{mood.label}</span>
-              </button>
+              </Button>
             ))}
           </div>
 
