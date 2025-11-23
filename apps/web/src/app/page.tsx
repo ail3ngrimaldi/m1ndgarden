@@ -3,6 +3,8 @@ import { useMiniApp } from "@/contexts/miniapp-context";
 import { sdk } from "@farcaster/frame-sdk";
 import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
+import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 export default function Home() {
   const { context, isMiniAppReady } = useMiniApp();
@@ -40,7 +42,7 @@ export default function Home() {
   if (!isMiniAppReady) {
     return (
       <main className="flex-1">
-        <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <section className="flex items-center justify-center min-h-screen">
           <div className="w-full max-w-md mx-auto p-8 text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading...</p>
@@ -52,40 +54,25 @@ export default function Home() {
   
   return (
     <main className="flex-1">
-      <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section className="flex items-center justify-center min-h-screen">
         <div className="w-full max-w-md mx-auto p-8 text-center">
           {/* Welcome Header */}
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Welcome
-          </h1>
-          
-          {/* Status Message */}
-          <p className="text-lg text-gray-600 mb-6">
-            You are signed in!
-          </p>
-          
-          {/* User Wallet Address */}
-          <div className="mb-8">
-            <div className="bg-white/20 backdrop-blur-sm px-4 py-3 rounded-lg">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs text-gray-600 font-medium">Wallet Status</span>
-                <div className={`flex items-center gap-1 text-xs ${
-                  isConnected ? 'text-green-600' : isConnecting ? 'text-yellow-600' : 'text-gray-500'
-                }`}>
-                  <div className={`w-2 h-2 rounded-full ${
-                    isConnected ? 'bg-green-500' : isConnecting ? 'bg-yellow-500' : 'bg-gray-400'
-                  }`}></div>
-                  {isConnected ? 'Connected' : isConnecting ? 'Connecting...' : 'Disconnected'}
-                </div>
-              </div>
-              <p className="text-sm text-gray-700 font-mono">
-                {formatAddress(walletAddress)}
-              </p>
-            </div>
+          <div className="bg-white rounded-3xl p-8 shadow-2xl w-full max-w-md relative">
+            <div className="flex flex-col items-center space-y-2">
+          {/* Garden Image */}
+          <div className="w-64 h-64 rounded-lg overflow-hidden">
+            <img
+              src="/garden.jpeg"
+              alt="Garden illustration"
+              className="w-full h-full object-cover"
+            />
           </div>
-          
-          {/* User Profile Section */}
-          <div className="mb-8">
+
+          {/* Title */}
+          <h1 className="text-4xl font-bold tracking-tight text-center font-display">MINDGARDEN</h1>
+
+  {/* User Profile Section */}
+  <div className="mb-8">
             {/* Profile Avatar */}
             <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center overflow-hidden">
               {pfpUrl ? (
@@ -106,12 +93,44 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-gray-900 mb-1">
                 {displayName}
               </h2>
-              <p className="text-gray-500">
-                {username.startsWith('@') ? username : `@${username}`}
-              </p>
             </div>
           </div>
           
+
+          {/* Subtitle */}
+          <h2 className="text-xl text-muted-foreground text-center">Your mind is a garden</h2>
+
+          {/* Paragraph */}
+          <p className="text-center text-muted-foreground">Let's cultivate it together</p>
+
+            {/* Button */}
+            <Link href="/mood">
+              <Button className="w-full h-14 rounded-full bg-[#06b6d4] hover:bg-[#0891b2] text-white font-semibold text-base shadow-md transition-colors">Start your journey</Button>
+            </Link>
+          </div>
+        </div>
+          
+          {/* User Wallet Address */}
+          {/* <div className="mb-8">
+            <div className="bg-white/20 backdrop-blur-sm px-4 py-3 rounded-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-gray-600 font-medium">Wallet Status</span>
+                <div className={`flex items-center gap-1 text-xs ${
+                  isConnected ? 'text-green-600' : isConnecting ? 'text-yellow-600' : 'text-gray-500'
+                }`}>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isConnected ? 'bg-green-500' : isConnecting ? 'bg-yellow-500' : 'bg-gray-400'
+                  }`}></div>
+                  {isConnected ? 'Connected' : isConnecting ? 'Connecting...' : 'Disconnected'}
+                </div>
+              </div>
+              <p className="text-sm text-gray-700 font-mono">
+                {formatAddress(walletAddress)}
+              </p>
+            </div>
+          </div> */}
+          
+        
           {/* Add Miniapp Button */}
           <div className="mb-6">
             <button
