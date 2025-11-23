@@ -5,17 +5,16 @@ import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Home() {
   const { context, isMiniAppReady } = useMiniApp();
   const [isAddingMiniApp, setIsAddingMiniApp] = useState(false);
   const [addMiniAppMessage, setAddMiniAppMessage] = useState<string | null>(null);
-  
+
   // Wallet connection hooks
   const { address, isConnected, isConnecting } = useAccount();
   const { connect, connectors } = useConnect();
-  
+
   // Auto-connect wallet when miniapp is ready
   useEffect(() => {
     if (isMiniAppReady && !isConnected && !isConnecting && connectors.length > 0) {
@@ -25,7 +24,7 @@ export default function Home() {
       }
     }
   }, [isMiniAppReady, isConnected, isConnecting, connectors, connect]);
-  
+
   // Extract user data from context
   const user = context?.user;
   // Use connected wallet address if available, otherwise fall back to user custody/verification
@@ -33,13 +32,13 @@ export default function Home() {
   const displayName = user?.displayName || user?.username || "User";
   const username = user?.username || "@user";
   const pfpUrl = user?.pfpUrl;
-  
+
   // Format wallet address to show first 6 and last 4 characters
   const formatAddress = (address: string) => {
     if (!address || address.length < 10) return address;
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
-  
+
   if (!isMiniAppReady) {
     return (
       <main className="flex-1">
@@ -52,7 +51,7 @@ export default function Home() {
       </main>
     );
   }
-  
+
   return (
     <main className="flex-1">
       <section className="flex items-center justify-center min-h-screen">
@@ -62,11 +61,10 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-2">
           {/* Garden Image */}
           <div className="w-64 h-64 rounded-lg overflow-hidden">
-            <Image
+            <img
               src="/garden.jpeg"
               alt="Garden illustration"
-              fill
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -78,11 +76,10 @@ export default function Home() {
             {/* Profile Avatar */}
             <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center overflow-hidden">
               {pfpUrl ? (
-                <Image
-                  src={pfpUrl}
-                  alt="Profile"
-                  fill
-                  className="object-cover rounded-full"
+                <img 
+                  src={pfpUrl} 
+                  alt="Profile" 
+                  className="w-full h-full object-cover rounded-full"
                 />
               ) : (
                 <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center">
@@ -90,15 +87,18 @@ export default function Home() {
                 </div>
               )}
             </div>
-            
+
             {/* Profile Info */}
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-1">
                 {displayName}
               </h2>
+
+
+
             </div>
           </div>
-          
+
 
           {/* Subtitle */}
           <h2 className="text-xl text-muted-foreground text-center">Your mind is a garden</h2>
@@ -139,10 +139,10 @@ export default function Home() {
             <button
               onClick={async () => {
                 if (isAddingMiniApp) return;
-                
+
                 setIsAddingMiniApp(true);
                 setAddMiniAppMessage(null);
-                
+
                 try {
                   const result = await sdk.actions.addMiniApp();
                   if (result) {
@@ -176,7 +176,7 @@ export default function Home() {
                 </>
               )}
             </button>
-            
+
             {/* Add Miniapp Status Message */}
             {addMiniAppMessage && (
               <div className="mt-3 p-3 bg-white/30 backdrop-blur-sm rounded-lg">
