@@ -1,16 +1,19 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { ArrowLeft, ArrowRight, Brain, Moon, User, Heart } from "lucide-react"
 import Image from "next/image"
 
 interface HomeScreenProps {
   onPracticeClick?: () => void
+  onBack?: () => void
   level?: number
   xp?: number
   completedPractices?: string[]
 }
 
-export function HomeScreen({ onPracticeClick, level = 1, xp = 0, completedPractices = [] }: HomeScreenProps) {
+export function HomeScreen({ onPracticeClick, onBack, level = 1, xp = 0, completedPractices = [] }: HomeScreenProps) {
+  const router = useRouter()
   const plantImage = "/garden1.jpg"
 
   const isMeditationCompleted = completedPractices.includes("5-minute morning meditation")
@@ -23,7 +26,7 @@ export function HomeScreen({ onPracticeClick, level = 1, xp = 0, completedPracti
 
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <button className="p-2 -ml-2">
+          <button onClick={onBack} className="p-2 -ml-2">
             <ArrowLeft className="w-6 h-6" />
           </button>
           <h1 className="text-2xl font-bold tracking-wider font-display">
@@ -77,7 +80,7 @@ export function HomeScreen({ onPracticeClick, level = 1, xp = 0, completedPracti
           </p>
           <div className="space-y-3">
             <button
-              onClick={onPracticeClick}
+              onClick={() => router.push("/meditate")}
               className="w-full bg-white rounded-2xl p-4 flex items-center justify-between hover:bg-[#f0fdf4] transition-colors"
               disabled={isMeditationCompleted}
             >

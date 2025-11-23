@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font definitions */
+@font-face {
+  font-family: 'Brassia';
+  src: url('/fonts/Brassia-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* --- COLOR VARIABLES --- */
@@ -92,7 +101,7 @@
 
   /* Clase para texto "Display" (Brassia) */
   .font-display {
-      font-family: var(--font-brassia), sans-serif;
+      font-family: 'Brassia', sans-serif;
   }
 
   /* Clase para texto "Special" (MD Thermochrome) con su fallback específico */
@@ -101,7 +110,42 @@
   }
 
   html, body {
-    background: linear-gradient(180deg, #D9F99D 7.21%, #F0ABFC 44.23%, #FFF 88.94%);
+    background: url('/Clouds.svg') no-repeat center top, linear-gradient(180deg, #D9F99D 7.21%, #F0ABFC 44.23%, #FFF 88.94%);
     background-attachment: fixed;
+    background-size: 400px auto, cover;
+  }
+
+  /* Meditation breathing animations */
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes breathing-ring {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  .animate-breathing-ring {
+    animation: breathing-ring 4s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
   }
 }
