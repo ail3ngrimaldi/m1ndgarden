@@ -3,8 +3,8 @@ import { useMiniApp } from "@/contexts/miniapp-context";
 import { sdk } from "@farcaster/frame-sdk";
 import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 export default function Home() {
   const { context, isMiniAppReady } = useMiniApp();
@@ -57,19 +57,19 @@ export default function Home() {
       <section className="flex items-center justify-center min-h-screen">
         <div className="w-full max-w-md mx-auto p-8 text-center">
           {/* Welcome Header */}
-          <Card className="w-full max-w-md">
-          <CardContent className="flex flex-col items-center p-8 space-y-2">
+          <div className="bg-white rounded-3xl p-8 shadow-2xl w-full max-w-md relative">
+            <div className="flex flex-col items-center space-y-2">
           {/* Garden Image */}
           <div className="w-64 h-64 rounded-lg overflow-hidden">
             <img
-              src="/garden1.jpg"
+              src="/garden.jpeg"
               alt="Garden illustration"
               className="w-full h-full object-cover"
             />
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl font-bold tracking-tight text-center">MINDGARDEN</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-center font-display">MINDGARDEN</h1>
 
   {/* User Profile Section */}
   <div className="mb-8">
@@ -103,10 +103,12 @@ export default function Home() {
           {/* Paragraph */}
           <p className="text-center text-muted-foreground">Let's cultivate it together</p>
 
-          {/* Button */}
-          <Button className="rounded-full px-8">Start your journey</Button>
-        </CardContent>
-      </Card>
+            {/* Button */}
+            <Link href="/mood">
+              <Button className="w-full h-14 rounded-full bg-[#06b6d4] hover:bg-[#0891b2] text-white font-semibold text-base shadow-md transition-colors">Start your journey</Button>
+            </Link>
+          </div>
+        </div>
           
           {/* User Wallet Address */}
           {/* <div className="mb-8">
